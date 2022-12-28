@@ -1,4 +1,10 @@
-package io.github.lybueno.model;
+package io.github.lybueno.model.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -6,13 +12,18 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
     @NotNull
     private Customer customer;
@@ -36,5 +47,6 @@ public class Address {
     private String numero;
 
     @Column(name = "main_address")
-    private Boolean isMainAddress;
+    private Boolean isMainAddress = false;
+
 }
