@@ -1,4 +1,4 @@
-package io.github.lybueno.rest.exception;
+package io.github.lybueno.service.exception;
 
 import lombok.Getter;
 

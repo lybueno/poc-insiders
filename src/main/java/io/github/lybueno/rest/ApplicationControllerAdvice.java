@@ -1,6 +1,6 @@
 package io.github.lybueno.rest;
 
-import io.github.lybueno.rest.exception.ApiErrors;
+import io.github.lybueno.service.exception.ApiErrors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
