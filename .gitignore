@@ -1,0 +1,5 @@
+*.idea
+build
+target
+*.iml
+/src/main/resources/application-dev.properties
