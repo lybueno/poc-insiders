@@ -1,15 +1,23 @@
-package io.github.lybueno.model;
+package io.github.lybueno.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.github.lybueno.model.entity.Address;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
-@Table(name = "customer")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Customer {
 
     @Id
@@ -24,6 +32,7 @@ public class Customer {
     @CPF(message = "{field.cpf.invalid}")
     private String cpf;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Address> addresses;
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Address> addresses = new ArrayList<>();
 }
